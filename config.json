@@ -1,0 +1,25 @@
+{
+    "modules": [
+        "intro/splash_screen",
+        "intro/login",
+        "intro/register",
+        "menu/main_navigation",
+        "menu/home/home",
+        "menu/home/home_news_search",
+        "menu/home/home_news_detail",
+        "menu/event/event",
+        "menu/event/event_registration",
+        "menu/community/community",
+        "menu/profile/profile",
+        "menu/chat"
+    ],
+    "module_directory_name": "module",
+    "experimental_mode": false,
+    "learning_mode": false,
+    "unfreezed": true,
+    "use_cubit": true,
+    "ignore_core_generator_for_directories": [
+        "lib/model",
+        "lib/models"
+    ]
+}
