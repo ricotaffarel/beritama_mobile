@@ -16,6 +16,7 @@ class HomeNewsDetailController extends Cubit<HomeNewsDetailState>
   @override
   void initState() {
     //initState event
+    getNews();
   }
 
   @override
@@ -33,22 +34,14 @@ class HomeNewsDetailController extends Cubit<HomeNewsDetailState>
     emit(state.copyWith());
   }
 
-  List<Map<String, dynamic>> dummyNews = [
-    {
-      'title': 'Lorem Ipsum Ipsum Ipsum Ipsum Dolor Sit Amet',
-      'author': 'John Doe',
-      'time': "1 minutes",
-    },
-    {
-      'title': 'Consectetur Adipiscing Elit',
-      'author': 'Jane Smith',
-      'time': "1 minutes",
-    },
-    {
-      'title': 'Sed Do Eiusmod Tempor Incididunt',
-      'author': 'Alex Johnson',
-      'time': "1 minutes"
-    },
-    // Tambahkan data berita lainnya sesuai kebutuhan
-  ];
+  getNews() async {
+    state.loading = true;
+    emit(state.copyWith());
+
+    state.news = await HomeService().getNews();
+    print(state.news.length);
+
+    state.loading = false;
+    emit(state.copyWith());
+  }
 }

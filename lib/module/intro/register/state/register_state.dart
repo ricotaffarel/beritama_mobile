@@ -8,5 +8,7 @@ class RegisterState with _$RegisterState {
     @Default("") String email,
     @Default("") String password,
     @Default("") String passwordConfirmation,
+    @Default(false) bool process,
+    @Default(false) bool loading,
   }) = _RegisterState;
 }

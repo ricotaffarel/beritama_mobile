@@ -40,7 +40,20 @@ class _LoginViewState extends State<LoginView> {
     return BlocProvider(
       create: (BuildContext context) => controller,
       child: BlocListener<LoginController, LoginState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.loading) {
+            CustomShowDialog.showLoadingDialog(context, "Loading");
+          }
+
+          if (state.loading == false) {
+            CustomShowDialog.hideDialog(
+              context,
+            );
+            if (state.isLogin) {
+              Get.offAll(MainNavigationView());
+            }
+          }
+        },
         child: BlocBuilder<LoginController, LoginState>(
           builder: (context, state) {
             final bloc = context.read<LoginController>();
@@ -123,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
                   label: "Login",
                   onPressed: () {
                     if (controller.formKey.currentState!.validate() == true) {
-                      Get.offAll(MainNavigationView());
+                      controller.loginController();
                     }
                   },
                 ),

@@ -40,7 +40,20 @@ class _RegisterViewState extends State<RegisterView> {
     return BlocProvider(
       create: (BuildContext context) => controller,
       child: BlocListener<RegisterController, RegisterState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.loading) {
+            CustomShowDialog.showLoadingDialog(context, "Loading");
+          }
+
+          if (state.loading == false) {
+            CustomShowDialog.hideDialog(
+              context,
+            );
+            if (state.process) {
+              Get.back();
+            }
+          }
+        },
         child: BlocBuilder<RegisterController, RegisterState>(
           builder: (context, state) {
             final bloc = context.read<RegisterController>();
@@ -72,8 +85,9 @@ class _RegisterViewState extends State<RegisterView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Spacer(),
                   const SizedBox(
-                    height: 20.0,
+                    height: 10.0,
                   ),
                   Text(
                     "Register",
@@ -87,8 +101,9 @@ class _RegisterViewState extends State<RegisterView> {
                       style: GoogleFonts.poppins(
                           fontSize: 13.0, color: Colors.grey.shade500)),
                   const SizedBox(
-                    height: 50.0,
+                    height: 20.0,
                   ),
+                  Spacer(),
                   CustomTextField(
                     hint: "Enter Your Name",
                     prefixIcon: Icons.abc,
@@ -141,19 +156,20 @@ class _RegisterViewState extends State<RegisterView> {
                       controller.formKey.currentState!.validate();
                     },
                   ),
+                  Spacer(),
                   const SizedBox(
-                    height: 20.0,
+                    height: 10.0,
                   ),
                   QButton(
                       label: "Register",
                       onPressed: () {
                         if (controller.formKey.currentState!.validate() ==
                             true) {
-                          Get.back();
+                          controller.registerController();
                         }
                       }),
                   const SizedBox(
-                    height: 10.0,
+                    height: 20.0,
                   ),
                   QButton(
                       label: "Haven't an account",

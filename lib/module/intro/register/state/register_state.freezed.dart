@@ -1,7 +1,13 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'register_state.dart';
 
-
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
 
 T _$identity<T>(T value) => value;
 
@@ -18,6 +24,10 @@ mixin _$RegisterState {
   set password(String value) => throw _privateConstructorUsedError;
   String get passwordConfirmation => throw _privateConstructorUsedError;
   set passwordConfirmation(String value) => throw _privateConstructorUsedError;
+  bool get process => throw _privateConstructorUsedError;
+  set process(bool value) => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
+  set loading(bool value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
@@ -34,7 +44,9 @@ abstract class $RegisterStateCopyWith<$Res> {
       {String name,
       String email,
       String password,
-      String passwordConfirmation});
+      String passwordConfirmation,
+      bool process,
+      bool loading});
 }
 
 /// @nodoc
@@ -54,6 +66,8 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? email = null,
     Object? password = null,
     Object? passwordConfirmation = null,
+    Object? process = null,
+    Object? loading = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -72,6 +86,14 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           ? _value.passwordConfirmation
           : passwordConfirmation // ignore: cast_nullable_to_non_nullable
               as String,
+      process: null == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -88,7 +110,9 @@ abstract class _$$RegisterStateImplCopyWith<$Res>
       {String name,
       String email,
       String password,
-      String passwordConfirmation});
+      String passwordConfirmation,
+      bool process,
+      bool loading});
 }
 
 /// @nodoc
@@ -106,6 +130,8 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? passwordConfirmation = null,
+    Object? process = null,
+    Object? loading = null,
   }) {
     return _then(_$RegisterStateImpl(
       name: null == name
@@ -124,6 +150,14 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
           ? _value.passwordConfirmation
           : passwordConfirmation // ignore: cast_nullable_to_non_nullable
               as String,
+      process: null == process
+          ? _value.process
+          : process // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -135,7 +169,9 @@ class _$RegisterStateImpl implements _RegisterState {
       {this.name = "",
       this.email = "",
       this.password = "",
-      this.passwordConfirmation = ""});
+      this.passwordConfirmation = "",
+      this.process = false,
+      this.loading = false});
 
   @override
   @JsonKey()
@@ -149,10 +185,16 @@ class _$RegisterStateImpl implements _RegisterState {
   @override
   @JsonKey()
   String passwordConfirmation;
+  @override
+  @JsonKey()
+  bool process;
+  @override
+  @JsonKey()
+  bool loading;
 
   @override
   String toString() {
-    return 'RegisterState(name: $name, email: $email, password: $password, passwordConfirmation: $passwordConfirmation)';
+    return 'RegisterState(name: $name, email: $email, password: $password, passwordConfirmation: $passwordConfirmation, process: $process, loading: $loading)';
   }
 
   @JsonKey(ignore: true)
@@ -167,7 +209,9 @@ abstract class _RegisterState implements RegisterState {
       {String name,
       String email,
       String password,
-      String passwordConfirmation}) = _$RegisterStateImpl;
+      String passwordConfirmation,
+      bool process,
+      bool loading}) = _$RegisterStateImpl;
 
   @override
   String get name;
@@ -181,6 +225,12 @@ abstract class _RegisterState implements RegisterState {
   @override
   String get passwordConfirmation;
   set passwordConfirmation(String value);
+  @override
+  bool get process;
+  set process(bool value);
+  @override
+  bool get loading;
+  set loading(bool value);
   @override
   @JsonKey(ignore: true)
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>

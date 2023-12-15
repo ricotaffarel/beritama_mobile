@@ -37,9 +37,15 @@ class _SplashScreenViewState extends State<SplashScreenView> {
     return BlocProvider(
       create: (BuildContext context) => controller,
       child: BlocListener<SplashScreenController, SplashScreenState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.splash_screen) {
-            Get.offAll(LoginView());
+            await session.getId();
+            print(session.id);
+            if (session.id == null) {
+              Get.offAll(LoginView());
+            } else {
+              Get.offAll(MainNavigationView());
+            }
           }
         },
         child: BlocBuilder<SplashScreenController, SplashScreenState>(
@@ -59,10 +65,11 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   ) {
     return Scaffold(
       body: Center(
-        child: Icon(
-          Icons.developer_board,
-          size: 120.0,
-          color: Colors.blueAccent[700],
+        child: Image.asset(
+          "assets/logo.png",
+          width: 170.0,
+          height: 170.0,
+          fit: BoxFit.fill,
         ),
       ),
     );

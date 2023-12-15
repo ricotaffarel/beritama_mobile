@@ -22,9 +22,4 @@ class HomeNewsSearchController extends Cubit<HomeNewsSearchState>
   void ready() {
     //ready event
   }
-
-  increment() {
-    state.counter++;
-    emit(state.copyWith());
-  }
 }

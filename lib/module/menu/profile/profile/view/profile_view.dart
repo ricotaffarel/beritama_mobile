@@ -1,3 +1,4 @@
+import 'package:beritama/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../controller/profile_controller.dart';
@@ -69,7 +70,10 @@ class _ProfileViewState extends State<ProfileView> {
             CircleAvatar(
               backgroundColor: Colors.white,
               child: IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await session.clearSessions();
+                  Get.offAll(LoginView());
+                },
                 icon: const Icon(
                   Icons.logout,
                   size: 24.0,
@@ -146,18 +150,10 @@ class _ProfileViewState extends State<ProfileView> {
                   trailing: const Icon(
                     Icons.chevron_right,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(item['to']);
+                  },
                 ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 20),
-                child: Text(
-                  "Booking",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
               const Padding(
                 padding: EdgeInsets.only(left: 15, top: 20),
                 child: Text(

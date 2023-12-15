@@ -10,7 +10,9 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeNewsDetailView extends StatefulWidget {
-  const HomeNewsDetailView({Key? key}) : super(key: key);
+  final HomeNewsModel news;
+
+  const HomeNewsDetailView({Key? key, required this.news}) : super(key: key);
 
   @override
   State<HomeNewsDetailView> createState() => _HomeNewsDetailViewState();
@@ -84,7 +86,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
             padding: EdgeInsets.only(right: 10),
             child: InkWell(
               onTap: () {
-                CustomShowDialog.showDialogDisclaimer(
+                CustomShowDialog.showDialogWidget(
                   context,
                   ShowDisclaimerInfo(),
                 );
@@ -107,7 +109,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "Lorem ipsum dolor laboris nisi ut aliquip ex ea commodo consequat.",
+                  widget.news.newsTitle!,
                   style: TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.w600,
@@ -119,10 +121,12 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                 Container(
                   height: 160.0,
                   width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                        "https://images.unsplash.com/photo-1533050487297-09b450131914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+                        (widget.news.fileName != null)
+                            ? "$url/uploads/news/${widget.news.fileName.toString()}"
+                            : "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -137,7 +141,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                   height: 10.0,
                 ),
                 Text(
-                  "Publish date : 17 Januari 2023",
+                  "Publish date : ${widget.news.createdAt.toString().substring(0, 10)}",
                   style: TextStyle(
                     fontSize: 13.0,
                   ),
@@ -146,7 +150,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                   height: 5.0,
                 ),
                 Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. UtLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                  widget.news.newsDescription!,
                   maxLines: controller.state.seeMore ? null : 3,
                   style: TextStyle(
                     fontSize: 12.0,
@@ -171,9 +175,11 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                HomeCardNews2(
-                  news: controller.dummyNews,
-                )
+                (controller.state.loading == true)
+                    ? ShimmerHomeCardNews2()
+                    : HomeCardNews2(
+                        news: controller.state.news,
+                      ),
               ],
             ),
           ),
@@ -181,7 +187,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
       ),
       floatingActionButton: InkWell(
         onTap: () {
-          CustomShowDialog.showDialogDisclaimer(context, ShowFormDisclaimer());
+          CustomShowDialog.showDialogWidget(context, ShowFormDisclaimer());
         },
         child: Container(
           width: 150,

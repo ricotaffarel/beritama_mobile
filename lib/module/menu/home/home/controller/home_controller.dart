@@ -1,3 +1,5 @@
+import 'package:beritama/module/menu/home/home/service/home_service.dart';
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../state/home_state.dart';
 import 'package:beritama/bloc_util.dart';
@@ -10,6 +12,7 @@ class HomeController extends Cubit<HomeState> implements IBlocBase {
   @override
   void initState() {
     //initState event
+    getNews();
   }
 
   @override
@@ -22,27 +25,22 @@ class HomeController extends Cubit<HomeState> implements IBlocBase {
     //ready event
   }
 
-  increment() {
-    state.counter++;
+  getNews() async {
+    state.loading = true;
+    emit(state.copyWith());
+
+    state.news = await HomeService().getNews();
+    print(state.news.length);
+
+    state.loading = false;
     emit(state.copyWith());
   }
 
-  List<Map<String, dynamic>> dummyNews = [
-    {
-      'title': 'Lorem Ipsum Ipsum Ipsum Ipsum Dolor Sit Amet',
-      'author': 'John Doe',
-      'time': "1 minutes",
-    },
-    {
-      'title': 'Consectetur Adipiscing Elit',
-      'author': 'Jane Smith',
-      'time': "1 minutes",
-    },
-    {
-      'title': 'Sed Do Eiusmod Tempor Incididunt',
-      'author': 'Alex Johnson',
-      'time': "1 minutes"
-    },
-    // Tambahkan data berita lainnya sesuai kebutuhan
-  ];
+  int currentIndex = 0;
+  updateIndexSlider(int i) {
+    currentIndex = i;
+    emit(state.copyWith());
+  }
+
+  final CarouselController carouselController = CarouselController();
 }

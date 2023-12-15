@@ -134,7 +134,12 @@ class _CommunityViewState extends State<CommunityView> {
                   physics: const ScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return CommunityCardNews2();
+                    return InkWell(
+                      onTap: () {
+                        Get.to(CommunityDetailView());
+                      },
+                      child: CommunityCardNews2(),
+                    );
                   },
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:beritama/core.dart';
 import 'package:beritama/module/menu/home/home_news_search/widget/home_news_search_card.dart';
 import 'package:beritama/shared/utils/state_util.dart';
 import 'package:beritama/shared/widgets/textfield/custom_textfield.dart';
@@ -101,30 +102,26 @@ class _HomeNewsSearchViewState extends State<HomeNewsSearchView> {
                   child: CustomTextField(
                       hint: "Search",
                       prefixIcon: Icons.search,
-                      suffixIcon: Icons.camera_alt,
-                      onChanged: (value) {}),
+                      onChanged: (value) {
+                        state.search = value;
+                      }),
                 ),
                 const SizedBox(
                   height: 15.0,
                 ),
-                Text(
-                  "Indentify result:",
-                  style: TextStyle(
-                    fontSize: 13.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                ListView.builder(
-                  itemCount: 10,
-                  physics: const ScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return HomeNewsSearchCard();
-                  },
-                ),
+                // Text(
+                //   "Indentify result:",
+                //   style: TextStyle(
+                //     fontSize: 13.0,
+                //     fontWeight: FontWeight.w600,
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 10.0,
+                // ),
+                // HomeCardNews1(
+                //   news: controller.state.,
+                // )
               ],
             ),
           ),

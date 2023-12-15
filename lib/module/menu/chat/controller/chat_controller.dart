@@ -1,7 +1,9 @@
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../state/chat_state.dart';
 import 'package:beritama/bloc_util.dart';
+import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -26,84 +28,54 @@ class ChatController extends Cubit<ChatState> implements IBlocBase {
     //ready event
   }
 
-  List<Map<String, dynamic>> dummyChatData = [
-    {
-      'sender': 'John',
-      'message': 'Hello, how are you?',
-      'timestamp': '2023-11-29',
-      'isMe': false,
-    },
-    {
-      'sender': 'Alice',
-      'message': 'Hi John! I\'m doing well, thanks.',
-      'timestamp': '2023-11-29',
-      'isMe': true,
-    },
-    {
-      'sender': 'John',
-      'message': 'That\'s great to hear!',
-      'timestamp': '2023-11-29',
-      'isMe': false,
-    },
-    {
-      'sender': 'Alice',
-      'message': 'How was your day?',
-      'timestamp': '2023-11-29',
-      'isMe': true,
-    },
-    {
-      'sender': 'John',
-      'message': 'It was good. How about yours?',
-      'timestamp': '2023-11-29',
-      'isMe': false,
-    },
-    {
-      'sender': 'Alice',
-      'message': 'My day was busy but productive.',
-      'timestamp': '2023-11-29',
-      'isMe': true,
-    },
-    {
-      'sender': 'John',
-      'message': 'That\'s always a good thing!',
-      'timestamp': '2023-11-29',
-      'isMe': false,
-    },
-    {
-      'sender': 'Alice',
-      'message': 'Absolutely!',
-      'timestamp': '2023-11-29',
-      'isMe': true,
-    },
-    {
-      'sender': 'John',
-      'message': 'What are your plans for the evening?',
-      'timestamp': '2023-11-29',
-      'isMe': false,
-    },
-    {
-      'sender': 'Alice',
-      'message': "I'm going to relax and watch a movie. How about you?",
-      'timestamp': '2023-11-29',
-      'isMe': true,
-    },
-    {
-      'sender': 'John',
-      'message': 'I have some work to finish, but maybe later.',
-      'timestamp': '2023-11-29',
-      'isMe': false,
-    },
-    {
-      'sender': 'Alice',
-      'message': 'Sure, take your time.',
-      'timestamp': '2023-11-29',
-      'isMe': true,
-    },
-    {
-      'sender': 'John',
-      'message': 'Thanks!',
-      'timestamp': '2023-11-29',
-      'isMe': false,
-    },
-  ];
+  final openAI = OpenAI.instance.build(
+      token: "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",
+      baseOption: HttpSetup(),
+      enableLog: true);
+  late String prompt = "";
+  late List<Widget> pesan = [];
+
+  Future<void> completeWithSSE(String i) async {
+    final request = CompleteText(
+        prompt: i, maxTokens: 200, temperature: 0, model: TextDavinci3Model());
+
+    final response = await openAI.onCompletion(request: request);
+    // final request = CompleteText(
+    //     prompt: i, maxTokens: 200, model: TextDavinci3Model());
+    // openAI.onCompletionSSE(request: request).listen((it) {
+    //   prompt += it.choices.last.text;
+    //   pesan.add(Container(
+    //     child: BubbleSpecialThree(
+    //       text: prompt,
+    //       color: Color(0xFFE8E8EE),
+    //       tail: true,
+    //       isSender: false,
+    //     ),
+    //   ));
+    //   update();
+    // });
+    pesan.add(Container(
+      child: BubbleSpecialThree(
+        text: response!.choices.last.text.trim(),
+        color: Color(0xFFE8E8EE),
+        tail: true,
+        isSender: false,
+      ),
+    ));
+    emit(state.copyWith());
+  }
+
+  Future<void> sendAdd(String i) async {
+    completeWithSSE(i);
+    pesan.add(Container(
+      child: BubbleSpecialThree(
+        text: i,
+        color: Color(0xFF1B97F3),
+        tail: true,
+        isSender: true,
+        textStyle: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+    ));
+    emit(state.copyWith());
+  }
 }

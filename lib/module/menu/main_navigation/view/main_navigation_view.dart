@@ -1,6 +1,7 @@
 import 'package:beritama/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../controller/main_navigation_controller.dart';
 import '../state/main_navigation_state.dart';
 import 'package:get_it/get_it.dart';
@@ -70,7 +71,7 @@ class _MainNavigationViewState extends State<MainNavigationView> {
           backgroundColor: Theme.of(context).primaryColor,
           unselectedItemColor: Colors.white,
           selectedItemColor: Colors.white.withOpacity(0.5),
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.dashboard,
@@ -84,9 +85,7 @@ class _MainNavigationViewState extends State<MainNavigationView> {
               label: "Event",
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.abc,
-              ),
+              icon: Icon(MdiIcons.accountGroup),
               label: "Community",
             ),
             BottomNavigationBarItem(
@@ -102,24 +101,27 @@ class _MainNavigationViewState extends State<MainNavigationView> {
             Get.to(ChatView());
           },
           child: Container(
-              padding: const EdgeInsets.all(18.0),
-              margin: const EdgeInsets.only(
-                bottom: 20.0,
+            padding: const EdgeInsets.all(15.0),
+            margin: const EdgeInsets.only(
+              bottom: 20.0,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(100.0),
               ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(100.0),
-                ),
-                color: Theme.of(context).primaryColor,
-                border: Border.all(
-                  width: 3.0,
-                  color: Colors.grey.shade50,
-                ),
+              color: Theme.of(context).primaryColor,
+              border: Border.all(
+                width: 3.0,
+                color: Colors.grey.shade50,
               ),
-              child: Icon(
-                Icons.chat,
-                color: Colors.white,
-              )),
+            ),
+            child: Image.asset(
+              "assets/icon_chat.png",
+              width: 25.0,
+              height: 25.0,
+              fit: BoxFit.fill,
+            ),
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),

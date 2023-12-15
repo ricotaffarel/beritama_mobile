@@ -237,7 +237,7 @@ class _EventRegistrationViewState extends State<EventRegistrationView> {
                               child: QButton(
                                 label: "Register Here !",
                                 onPressed: () {
-                                  CustomShowDialog.showDialogDisclaimer(
+                                  CustomShowDialog.showDialogWidget(
                                       context,
                                       Column(
                                         children: [

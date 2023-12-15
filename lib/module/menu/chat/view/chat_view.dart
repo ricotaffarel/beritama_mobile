@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../controller/chat_controller.dart';
 import '../state/chat_state.dart';
 import 'package:get_it/get_it.dart';
+import 'package:chat_bubbles/message_bars/message_bar.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({Key? key}) : super(key: key);
@@ -60,95 +61,40 @@ class _ChatViewState extends State<ChatView> {
     ChatController controller,
     ChatState state,
   ) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("John"),
-        // centerTitle: true,
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          controller: controller.scrollController,
-          child: Column(
-            children: [
-              ListView.builder(
-                itemCount: controller.dummyChatData.length,
-                physics: const ScrollPhysics(),
-                shrinkWrap: true,
-                // reverse: true,
-                itemBuilder: (BuildContext context, int index) {
-                  var item = controller.dummyChatData[index];
-                  return Column(
-                    children: [
-                      if (index == 0 ||
-                          item['timestamp'] !=
-                              controller.dummyChatData[index - 1]['timestamp'])
-                        Text(
-                          item["timestamp"],
-                        ),
-                      Container(
-                        alignment: item["isMe"] == true
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        margin: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(12.0),
-                                ),
-                                color: item["isMe"] == true
-                                    ? Colors.blueAccent.shade700
-                                    : Colors.grey.shade600,
-                              ),
-                              child: Text(
-                                item["message"],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            title: Text("BOTAMA"),
           ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(12),
-        child: Wrap(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 50 + MediaQuery.of(context).viewInsets.bottom,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          body: Stack(
+            children: [
+              Column(
                 children: [
-                  Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(12.0),
-                        ),
-                        color: Colors.white,
-                      ),
-                      height: 50,
-                      child: ChatInputField(
-                        controller: controller.chatController,
-                        onSubmitted: (value) {},
-                      )),
+                  Expanded(
+                      child: SingleChildScrollView(
+                        controller: controller.scrollController,
+                          child: Container(
+                    height: 670,
+                    child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        itemCount: controller.pesan.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return controller.pesan[index];
+                        }),
+                  ))),
                 ],
               ),
-            )
-          ],
-        ),
-      ),
+              MessageBar(
+                onSend: (_) {
+                  print(_);
+                  controller.sendAdd(_);
+                },
+                actions: [],
+              ),
+            ],
+          )),
     );
   }
 }

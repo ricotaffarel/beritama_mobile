@@ -1,7 +1,13 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'home_news_search_state.dart';
 
-
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
 
 T _$identity<T>(T value) => value;
 
@@ -10,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeNewsSearchState {
-  int get counter => throw _privateConstructorUsedError;
-  set counter(int value) => throw _privateConstructorUsedError;
+  String get search => throw _privateConstructorUsedError;
+  set search(String value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeNewsSearchStateCopyWith<HomeNewsSearchState> get copyWith =>
@@ -24,7 +30,7 @@ abstract class $HomeNewsSearchStateCopyWith<$Res> {
           HomeNewsSearchState value, $Res Function(HomeNewsSearchState) then) =
       _$HomeNewsSearchStateCopyWithImpl<$Res, HomeNewsSearchState>;
   @useResult
-  $Res call({int counter});
+  $Res call({String search});
 }
 
 /// @nodoc
@@ -40,13 +46,13 @@ class _$HomeNewsSearchStateCopyWithImpl<$Res, $Val extends HomeNewsSearchState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? counter = null,
+    Object? search = null,
   }) {
     return _then(_value.copyWith(
-      counter: null == counter
-          ? _value.counter
-          : counter // ignore: cast_nullable_to_non_nullable
-              as int,
+      search: null == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -59,7 +65,7 @@ abstract class _$$HomeNewsSearchStateImplCopyWith<$Res>
       __$$HomeNewsSearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int counter});
+  $Res call({String search});
 }
 
 /// @nodoc
@@ -73,13 +79,13 @@ class __$$HomeNewsSearchStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? counter = null,
+    Object? search = null,
   }) {
     return _then(_$HomeNewsSearchStateImpl(
-      counter: null == counter
-          ? _value.counter
-          : counter // ignore: cast_nullable_to_non_nullable
-              as int,
+      search: null == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -87,15 +93,15 @@ class __$$HomeNewsSearchStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeNewsSearchStateImpl implements _HomeNewsSearchState {
-  _$HomeNewsSearchStateImpl({this.counter = 0});
+  _$HomeNewsSearchStateImpl({this.search = ""});
 
   @override
   @JsonKey()
-  int counter;
+  String search;
 
   @override
   String toString() {
-    return 'HomeNewsSearchState(counter: $counter)';
+    return 'HomeNewsSearchState(search: $search)';
   }
 
   @JsonKey(ignore: true)
@@ -107,11 +113,11 @@ class _$HomeNewsSearchStateImpl implements _HomeNewsSearchState {
 }
 
 abstract class _HomeNewsSearchState implements HomeNewsSearchState {
-  factory _HomeNewsSearchState({int counter}) = _$HomeNewsSearchStateImpl;
+  factory _HomeNewsSearchState({String search}) = _$HomeNewsSearchStateImpl;
 
   @override
-  int get counter;
-  set counter(int value);
+  String get search;
+  set search(String value);
   @override
   @JsonKey(ignore: true)
   _$$HomeNewsSearchStateImplCopyWith<_$HomeNewsSearchStateImpl> get copyWith =>

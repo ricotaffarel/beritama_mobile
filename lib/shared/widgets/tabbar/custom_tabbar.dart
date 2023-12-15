@@ -112,43 +112,37 @@ class _CustomTabbar2State extends State<CustomTabbar2> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                    children: List.generate(widget.item.length, (index) {
-                  bool checkIndex = index == selectedIndex;
-                  var item = widget.item[index];
-                  return InkWell(
-                    onTap: () => setIndex(index),
-                    child: Container(
-                      margin: const EdgeInsets.only(
-                          right: 25.0, top: 10, bottom: 15),
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border(
-                              bottom: BorderSide(
-                                  width: 2,
-                                  color: checkIndex
-                                      ? Colors.blueAccent.shade700
-                                      : Colors.white))),
-                      child: Center(
-                        child: Text(
-                          item,
-                          style: TextStyle(
-                              fontSize: widget.textSize ?? 12,
-                              color:
-                                  checkIndex ? Colors.black : Colors.black38),
-                        ),
-                      ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: ScrollPhysics(),
+            child: Row(
+                children: List.generate(widget.item.length, (index) {
+              bool checkIndex = index == selectedIndex;
+              var item = widget.item[index];
+              return InkWell(
+                onTap: () => setIndex(index),
+                child: Container(
+                  margin:
+                      const EdgeInsets.only(right: 25.0, top: 10, bottom: 15),
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              width: 2,
+                              color: checkIndex
+                                  ? Colors.blueAccent.shade700
+                                  : Colors.transparent))),
+                  child: Center(
+                    child: Text(
+                      item,
+                      style: TextStyle(
+                          fontSize: widget.textSize ?? 12,
+                          color: checkIndex ? Colors.black : Colors.black38),
                     ),
-                  );
-                })),
-              ),
-            ],
+                  ),
+                ),
+              );
+            })),
           ),
           IndexedStack(
             index: selectedIndex,

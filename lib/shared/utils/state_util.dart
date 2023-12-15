@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-var url = "http://192.168.102.32:8080/api";
+var url = "https://mfsz3q3f-4100.asse.devtunnels.ms";
 
 BuildContext get globalContext {
   return Get.currentContext;
@@ -87,7 +87,7 @@ class CustomShowDialog {
     );
   }
 
-  static void showDialogDisclaimer(BuildContext context, Widget widget) {
+  static void showDialogWidget(BuildContext context, Widget widget) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -198,4 +198,15 @@ class NotificationDialog {
       },
     );
   }
+}
+
+DateTime parseDateString(String dateString) {
+  // Remove the 'Z' at the end and parse the string
+  String adjustedDateString = dateString.replaceAll('Z', '');
+  adjustedDateString = adjustedDateString.replaceAll('T', ' ');
+
+  // Parse the string to DateTime
+  DateTime dateTime = DateTime.parse(adjustedDateString);
+
+  return dateTime;
 }
