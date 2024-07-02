@@ -1,8 +1,6 @@
 import 'package:beritama/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../controller/chat_controller.dart';
-import '../state/chat_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:chat_bubbles/message_bars/message_bar.dart';
 
@@ -64,37 +62,56 @@ class _ChatViewState extends State<ChatView> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            title: Text("BOTAMA"),
-          ),
-          body: Stack(
-            children: [
-              Column(
-                children: [
-                  Expanded(
-                      child: SingleChildScrollView(
-                        controller: controller.scrollController,
-                          child: Container(
-                    height: 670,
-                    child: ListView.builder(
-                        padding: const EdgeInsets.all(8),
-                        itemCount: controller.pesan.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return controller.pesan[index];
-                        }),
-                  ))),
-                ],
-              ),
-              MessageBar(
-                onSend: (_) {
-                  print(_);
-                  controller.sendAdd(_);
-                },
-                actions: [],
-              ),
-            ],
-          )),
+        appBar: AppBar(
+          elevation: 0,
+          title: Text("BOTCHASER"),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+                child: SingleChildScrollView(
+                    controller: controller.scrollController,
+                    child: Container(
+                      height: 670,
+                      padding: EdgeInsets.only(bottom: 30, top: 30),
+                      child: ListView.builder(
+                          padding: const EdgeInsets.all(8),
+                          itemCount: controller.pesan.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              child: controller.pesan[index],
+                            );
+                          }),
+                    ))),
+            MessageBar(
+              sendButtonColor: primaryColor,
+              onSend: (_) {
+                print(_);
+                controller.sendAdd(_);
+              },
+              actions: [],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
+
+/*
+buatkan saya berita random berbahasa inggris dan berikan saya respon berupa json. response nya seperti ini
+
+{
+  "title": berisi judul berita berbahasa inggris,
+  "description" : berisi desc berita berbahasa inggris,
+  "author": youtube,
+  "source": youtube,
+  "publish_date": contoh nya 2024-06-30T00:00:00.000Z,
+  "news_keywords": berisi keyword,
+  "ambigous_keywords": "-",
+  "is_training": diisi true saja,
+  "label": pilih antara "aktual" atau "hoax"
+}
+*/

@@ -1,8 +1,8 @@
-import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
+import 'package:beritama/core.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../state/chat_state.dart';
-import 'package:beritama/bloc_util.dart';
 import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:injectable/injectable.dart';
 
@@ -28,35 +28,31 @@ class ChatController extends Cubit<ChatState> implements IBlocBase {
     //ready event
   }
 
-  final openAI = OpenAI.instance.build(
-      token: "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",
-      baseOption: HttpSetup(),
-      enableLog: true);
   late String prompt = "";
   late List<Widget> pesan = [];
 
-  Future<void> completeWithSSE(String i) async {
-    final request = CompleteText(
-        prompt: i, maxTokens: 200, temperature: 0, model: TextDavinci3Model());
+  Future completeWithSSE(String i) async {
+    // loadingChat();
+    var response = await Dio().post(
+      "$urlMl/botama",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+      data: {
+        "prompt": i,
+      },
+    );
 
-    final response = await openAI.onCompletion(request: request);
-    // final request = CompleteText(
-    //     prompt: i, maxTokens: 200, model: TextDavinci3Model());
-    // openAI.onCompletionSSE(request: request).listen((it) {
-    //   prompt += it.choices.last.text;
-    //   pesan.add(Container(
-    //     child: BubbleSpecialThree(
-    //       text: prompt,
-    //       color: Color(0xFFE8E8EE),
-    //       tail: true,
-    //       isSender: false,
-    //     ),
-    //   ));
-    //   update();
-    // });
+    print(response.data);
+    // String result = responses.map((item) => item['response'] as String).join();
+    // print(result);
+
+    selesaiChat();
     pesan.add(Container(
       child: BubbleSpecialThree(
-        text: response!.choices.last.text.trim(),
+        text: response.data['data'],
         color: Color(0xFFE8E8EE),
         tail: true,
         isSender: false,
@@ -66,16 +62,39 @@ class ChatController extends Cubit<ChatState> implements IBlocBase {
   }
 
   Future<void> sendAdd(String i) async {
-    completeWithSSE(i);
     pesan.add(Container(
       child: BubbleSpecialThree(
         text: i,
-        color: Color(0xFF1B97F3),
+        color: primaryColor,
         tail: true,
         isSender: true,
         textStyle: TextStyle(color: Colors.white, fontSize: 16),
       ),
     ));
+    loadingChat();
     emit(state.copyWith());
+    await completeWithSSE(i);
+    emit(state.copyWith());
+  }
+
+  loadingChat() {
+    pesan.add(Container(
+      child: BubbleSpecialThree(
+        textStyle: TextStyle(
+          fontSize: 40.0,
+        ),
+        text: "...",
+        color: Color(0xFFE8E8EE),
+        tail: true,
+        isSender: false,
+      ).animate().shimmer(
+            duration: 10.seconds,
+            color: Colors.grey.shade100,
+          ),
+    ));
+  }
+
+  selesaiChat() {
+    pesan.removeAt(pesan.length - 1);
   }
 }

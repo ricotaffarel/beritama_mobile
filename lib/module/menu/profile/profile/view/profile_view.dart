@@ -1,8 +1,6 @@
 import 'package:beritama/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../controller/profile_controller.dart';
-import '../state/profile_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -102,7 +100,7 @@ class _ProfileViewState extends State<ProfileView> {
                     const CircleAvatar(
                       radius: 50,
                       backgroundImage: NetworkImage(
-                        "https://i.ibb.co/PGv8ZzG/me.jpg",
+                        "https://shanibacreative.com/wp-content/uploads/2020/06/membuat-foto-profil-yang-bagus-834x556.jpg",
                       ),
                     ),
                     const SizedBox(

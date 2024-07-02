@@ -1,5 +1,4 @@
 import 'package:beritama/core.dart';
-import 'package:beritama/module/menu/home/home_news_with_category/model/home_news_with_category.dart';
 import 'package:dio/dio.dart';
 
 class HomeNewsWithCategoryService {

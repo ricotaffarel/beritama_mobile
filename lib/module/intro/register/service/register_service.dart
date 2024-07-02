@@ -8,7 +8,7 @@ class RegisterService {
       required String name}) async {
     try {
       var response = await Dio().post(
-        "$url/users/create-user",
+        "$url/users/non-auth/create-user",
         options: Options(
           headers: {
             "Content-Type": "application/json",

@@ -1,11 +1,9 @@
-import 'package:beritama/module/menu/home/home/widget/home_card_news.dart';
-import 'package:beritama/module/menu/home/home_news_with_category/widget/home_card_news.dart';
-import 'package:beritama/shared/widgets/tabbar/custom_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../controller/home_news_with_category_controller.dart';
 import '../state/home_news_with_category_state.dart';
 import 'package:get_it/get_it.dart';
+import '../widget/home_card_news.dart';
 
 class HomeNewsWithCategoryView extends StatefulWidget {
   const HomeNewsWithCategoryView({Key? key}) : super(key: key);
@@ -60,11 +58,25 @@ class _HomeNewsWithCategoryViewState extends State<HomeNewsWithCategoryView> {
     HomeNewsWithCategoryController controller,
     HomeNewsWithCategoryState state,
   ) {
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: const Text("Dashboard"),
+    //     actions: const [],
+    //   ),
+    //   body: SingleChildScrollView(
+    //     child: Container(
+    //       padding: const EdgeInsets.all(20.0),
+    //       child: const Column(
+    //         children: [],
+    //       ),
+    //     ),
+    //   ),
+    // );
     return DefaultTabController(
       length: controller.categoryName.length, // Jumlah tab
       child: Scaffold(
         appBar: AppBar(
-          title: Text('News App'),
+          title: Text('Berita Terkini'),
           bottom: TabBar(
             isScrollable: true,
             onTap: (value) {
@@ -84,49 +96,49 @@ class _HomeNewsWithCategoryViewState extends State<HomeNewsWithCategoryView> {
                 child: controller.state.loading
                     ? ShimmerHomeCardNewsWithCategory()
                     : HomeCardNewsWithCategory(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ),
               SingleChildScrollView(
                 child: controller.state.loading
                     ? ShimmerHomeCardNewsWithCategory()
                     : HomeCardNewsWithCategory(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ),
               SingleChildScrollView(
                 child: controller.state.loading
                     ? ShimmerHomeCardNewsWithCategory()
                     : HomeCardNewsWithCategory(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ),
               SingleChildScrollView(
                 child: controller.state.loading
                     ? ShimmerHomeCardNewsWithCategory()
                     : HomeCardNewsWithCategory(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ),
               SingleChildScrollView(
                 child: controller.state.loading
                     ? ShimmerHomeCardNewsWithCategory()
                     : HomeCardNewsWithCategory(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ),
               SingleChildScrollView(
                 child: controller.state.loading
                     ? ShimmerHomeCardNewsWithCategory()
                     : HomeCardNewsWithCategory(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ),
               SingleChildScrollView(
                 child: controller.state.loading
                     ? ShimmerHomeCardNewsWithCategory()
                     : HomeCardNewsWithCategory(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ),
             ],

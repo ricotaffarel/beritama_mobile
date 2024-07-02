@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-var url = "https://mfsz3q3f-4100.asse.devtunnels.ms";
+var url = "https://be-hoax-chaser.dzikrifaza.my.id";
+var urlMl = "https://35rktw08-8000.asse.devtunnels.ms";
 
 BuildContext get globalContext {
   return Get.currentContext;
@@ -203,7 +204,7 @@ class NotificationDialog {
 DateTime parseDateString(String dateString) {
   // Remove the 'Z' at the end and parse the string
   String adjustedDateString = dateString.replaceAll('Z', '');
-  adjustedDateString = adjustedDateString.replaceAll('T', ' ');
+  adjustedDateString = adjustedDateString.replaceAll('T', '');
 
   // Parse the string to DateTime
   DateTime dateTime = DateTime.parse(adjustedDateString);

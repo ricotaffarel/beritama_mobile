@@ -1,18 +1,12 @@
-import 'package:beritama/module/menu/home/home/model/home_news_model.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:beritama/core.dart';
-import 'package:beritama/shared/utils/state_util.dart';
-import 'package:google_fonts/google_fonts.dart';
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class HomeCardNewsWithCategory extends StatelessWidget {
-  final List<HomeNewsModel> news;
+  final HomeNewsModel news;
 
   HomeCardNewsWithCategory({Key? key, required this.news}) : super(key: key);
 
@@ -21,11 +15,11 @@ class HomeCardNewsWithCategory extends StatelessWidget {
     return Column(
       children: [
         ListView.builder(
-          itemCount: news.length,
+          itemCount: news.data.length,
           physics: const ScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
-            var item = news[index];
+            var item = news.data[index];
             return InkWell(
               onTap: () {
                 Get.to(HomeNewsDetailView(
@@ -68,7 +62,7 @@ class HomeCardNewsWithCategory extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              "data",
+                              item.newsCategory?.name ?? "Politik",
                               style: TextStyle(
                                 fontSize: 11.0,
                                 color: Colors.white,
@@ -115,7 +109,7 @@ class HomeCardNewsWithCategory extends StatelessWidget {
                                   Container(
                                       width: MediaQuery.of(context).size.width,
                                       child: Banner(
-                                        message: item.label!,
+                                        message: item.label,
                                         location: BannerLocation.topEnd,
                                         color: Colors.red,
                                       ))
@@ -132,7 +126,7 @@ class HomeCardNewsWithCategory extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    item.newsTitle ?? "",
+                                    item.title ?? "-",
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -141,7 +135,7 @@ class HomeCardNewsWithCategory extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    item.newsDescription ?? "",
+                                    item.description ?? "-",
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -165,7 +159,7 @@ class HomeCardNewsWithCategory extends StatelessWidget {
                                           SizedBox(
                                             width: 50,
                                             child: Text(
-                                              item.newsAuthor ?? "",
+                                              item.author ?? "",
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                 fontSize: 11.0,
@@ -184,8 +178,15 @@ class HomeCardNewsWithCategory extends StatelessWidget {
                                             width: 10.0,
                                           ),
                                           Text(
-                                            timeago.format(parseDateString(
-                                                item.createdAt!)),
+                                            item.publishDate != null
+                                                ? timeago
+                                                    .format(
+                                                      parseDateString(item
+                                                          .publishDate
+                                                          .toString()),
+                                                    )
+                                                    .toString()
+                                                : "-",
                                             style: TextStyle(
                                               fontSize: 11.0,
                                             ),

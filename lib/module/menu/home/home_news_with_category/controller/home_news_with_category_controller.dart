@@ -1,8 +1,5 @@
 import 'package:beritama/core.dart';
-import 'package:beritama/module/menu/home/home_news_with_category/service/home_news_with_categoryservice.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../state/home_news_with_category_state.dart';
-import 'package:beritama/bloc_util.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -49,11 +46,12 @@ class HomeNewsWithCategoryController extends Cubit<HomeNewsWithCategoryState>
   //   state.loading = false;
   //   emit(state.copyWith());
   // }
+  HomeNewsModel news = HomeNewsModel(message: "message", data: []);
   getNews() async {
     state.loading = true;
     emit(state.copyWith());
 
-    state.news = await HomeService().getNews();
+    news = await HomeService().getNews();
     print(state.news.length);
 
     state.loading = false;

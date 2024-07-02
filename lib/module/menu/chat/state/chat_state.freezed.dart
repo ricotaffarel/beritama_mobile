@@ -18,6 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ChatState {
   int get counter => throw _privateConstructorUsedError;
   set counter(int value) => throw _privateConstructorUsedError;
+  List<ChatBotModel> get chatResponse => throw _privateConstructorUsedError;
+  set chatResponse(List<ChatBotModel> value) =>
+      throw _privateConstructorUsedError;
+  List<dynamic> get chat => throw _privateConstructorUsedError;
+  set chat(List<dynamic> value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChatStateCopyWith<ChatState> get copyWith =>
@@ -29,7 +34,7 @@ abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
       _$ChatStateCopyWithImpl<$Res, ChatState>;
   @useResult
-  $Res call({int counter});
+  $Res call({int counter, List<ChatBotModel> chatResponse, List<dynamic> chat});
 }
 
 /// @nodoc
@@ -46,12 +51,22 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   @override
   $Res call({
     Object? counter = null,
+    Object? chatResponse = null,
+    Object? chat = null,
   }) {
     return _then(_value.copyWith(
       counter: null == counter
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
               as int,
+      chatResponse: null == chatResponse
+          ? _value.chatResponse
+          : chatResponse // ignore: cast_nullable_to_non_nullable
+              as List<ChatBotModel>,
+      chat: null == chat
+          ? _value.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ) as $Val);
   }
 }
@@ -64,7 +79,7 @@ abstract class _$$ChatStateImplCopyWith<$Res>
       __$$ChatStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int counter});
+  $Res call({int counter, List<ChatBotModel> chatResponse, List<dynamic> chat});
 }
 
 /// @nodoc
@@ -79,12 +94,22 @@ class __$$ChatStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? counter = null,
+    Object? chatResponse = null,
+    Object? chat = null,
   }) {
     return _then(_$ChatStateImpl(
       counter: null == counter
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
               as int,
+      chatResponse: null == chatResponse
+          ? _value.chatResponse
+          : chatResponse // ignore: cast_nullable_to_non_nullable
+              as List<ChatBotModel>,
+      chat: null == chat
+          ? _value.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ));
   }
 }
@@ -92,15 +117,22 @@ class __$$ChatStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChatStateImpl implements _ChatState {
-  _$ChatStateImpl({this.counter = 0});
+  _$ChatStateImpl(
+      {this.counter = 0, this.chatResponse = const [], this.chat = const []});
 
   @override
   @JsonKey()
   int counter;
+  @override
+  @JsonKey()
+  List<ChatBotModel> chatResponse;
+  @override
+  @JsonKey()
+  List<dynamic> chat;
 
   @override
   String toString() {
-    return 'ChatState(counter: $counter)';
+    return 'ChatState(counter: $counter, chatResponse: $chatResponse, chat: $chat)';
   }
 
   @JsonKey(ignore: true)
@@ -111,11 +143,20 @@ class _$ChatStateImpl implements _ChatState {
 }
 
 abstract class _ChatState implements ChatState {
-  factory _ChatState({int counter}) = _$ChatStateImpl;
+  factory _ChatState(
+      {int counter,
+      List<ChatBotModel> chatResponse,
+      List<dynamic> chat}) = _$ChatStateImpl;
 
   @override
   int get counter;
   set counter(int value);
+  @override
+  List<ChatBotModel> get chatResponse;
+  set chatResponse(List<ChatBotModel> value);
+  @override
+  List<dynamic> get chat;
+  set chat(List<dynamic> value);
   @override
   @JsonKey(ignore: true)
   _$$ChatStateImplCopyWith<_$ChatStateImpl> get copyWith =>

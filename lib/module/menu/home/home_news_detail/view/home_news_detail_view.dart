@@ -1,16 +1,12 @@
 import 'package:beritama/core.dart';
-import 'package:beritama/module/menu/home/home/widget/home_card_news.dart';
-import 'package:beritama/module/menu/home/home_news_detail/widget/show_dialog_disclaimer.dart';
-import 'package:beritama/shared/utils/image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../controller/home_news_detail_controller.dart';
-import '../state/home_news_detail_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomeNewsDetailView extends StatefulWidget {
-  final HomeNewsModel news;
+  final news;
 
   const HomeNewsDetailView({Key? key, required this.news}) : super(key: key);
 
@@ -61,22 +57,19 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
     HomeNewsDetailController controller,
     HomeNewsDetailState state,
   ) {
+    // return Scaffold(
+    //   body: Text("sata"),
+    // );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Column(
           children: [
             Text(
-              "BERITAMA",
+              "Hoax Casher",
               style: GoogleFonts.poppins(
                 fontSize: 19.0,
                 fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              "'Mencari Kebenaran Berita'",
-              style: TextStyle(
-                fontSize: 11.0,
               ),
             ),
           ],
@@ -109,7 +102,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  widget.news.newsTitle!,
+                  widget.news.title,
                   style: TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.w600,
@@ -119,7 +112,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                   height: 10.0,
                 ),
                 Container(
-                  height: 160.0,
+                  height: 180,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -150,7 +143,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                   height: 5.0,
                 ),
                 Text(
-                  widget.news.newsDescription!,
+                  widget.news.description ?? "-",
                   maxLines: controller.state.seeMore ? null : 3,
                   style: TextStyle(
                     fontSize: 12.0,
@@ -178,7 +171,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                 (controller.state.loading == true)
                     ? ShimmerHomeCardNews2()
                     : HomeCardNews2(
-                        news: controller.state.news,
+                        news: controller.news,
                       ),
               ],
             ),
@@ -186,11 +179,18 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
         ),
       ),
       floatingActionButton: InkWell(
-        onTap: () {
-          CustomShowDialog.showDialogWidget(context, ShowFormDisclaimer());
+        onTap: () async {
+          final session = SessionManager();
+          await session.getId();
+          CustomShowDialog.showDialogWidget(
+              context,
+              ShowFormDisclaimer(
+                newsId: widget.news.id,
+                userId: session.id!,
+              ));
         },
         child: Container(
-          width: 150,
+          width: 160,
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
@@ -212,7 +212,7 @@ class _HomeNewsDetailViewState extends State<HomeNewsDetailView> {
                 "Disclaimer News",
                 style: TextStyle(
                   fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
               ),

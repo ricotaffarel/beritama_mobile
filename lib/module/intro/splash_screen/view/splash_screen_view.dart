@@ -65,11 +65,13 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   ) {
     return Scaffold(
       body: Center(
-        child: Image.asset(
-          "assets/logo.png",
-          width: 170.0,
-          height: 170.0,
-          fit: BoxFit.fill,
+        child: Padding(
+          padding: EdgeInsets.only(left: 40.0),
+          child: Image.asset(
+            "assets/logo.png",
+            width: MediaQuery.of(context).size.width - 100,
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );

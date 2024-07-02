@@ -1,8 +1,6 @@
-import 'package:beritama/module/menu/home/home/service/home_service.dart';
+import 'package:beritama/core.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../state/home_state.dart';
-import 'package:beritama/bloc_util.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -10,7 +8,7 @@ class HomeController extends Cubit<HomeState> implements IBlocBase {
   HomeController() : super(HomeState());
 
   @override
-  void initState() {
+  void initState() async {
     //initState event
     getNews();
   }
@@ -25,12 +23,14 @@ class HomeController extends Cubit<HomeState> implements IBlocBase {
     //ready event
   }
 
+  HomeNewsModel news = HomeNewsModel(message: "message", data: []);
+
   getNews() async {
     state.loading = true;
     emit(state.copyWith());
 
-    state.news = await HomeService().getNews();
-    print(state.news.length);
+    news = await HomeService().getNews();
+    // print(news.data.length);
 
     state.loading = false;
     emit(state.copyWith());

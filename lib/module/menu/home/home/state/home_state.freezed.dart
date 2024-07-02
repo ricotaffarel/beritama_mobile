@@ -18,8 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeState {
   bool get loading => throw _privateConstructorUsedError;
   set loading(bool value) => throw _privateConstructorUsedError;
-  List<HomeNewsModel> get news => throw _privateConstructorUsedError;
-  set news(List<HomeNewsModel> value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -31,7 +29,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool loading, List<HomeNewsModel> news});
+  $Res call({bool loading});
 }
 
 /// @nodoc
@@ -48,17 +46,12 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? loading = null,
-    Object? news = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      news: null == news
-          ? _value.news
-          : news // ignore: cast_nullable_to_non_nullable
-              as List<HomeNewsModel>,
     ) as $Val);
   }
 }
@@ -71,7 +64,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, List<HomeNewsModel> news});
+  $Res call({bool loading});
 }
 
 /// @nodoc
@@ -86,17 +79,12 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
-    Object? news = null,
   }) {
     return _then(_$HomeStateImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      news: null == news
-          ? _value.news
-          : news // ignore: cast_nullable_to_non_nullable
-              as List<HomeNewsModel>,
     ));
   }
 }
@@ -104,18 +92,15 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  _$HomeStateImpl({this.loading = false, this.news = const []});
+  _$HomeStateImpl({this.loading = false});
 
   @override
   @JsonKey()
   bool loading;
-  @override
-  @JsonKey()
-  List<HomeNewsModel> news;
 
   @override
   String toString() {
-    return 'HomeState(loading: $loading, news: $news)';
+    return 'HomeState(loading: $loading)';
   }
 
   @JsonKey(ignore: true)
@@ -126,15 +111,11 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  factory _HomeState({bool loading, List<HomeNewsModel> news}) =
-      _$HomeStateImpl;
+  factory _HomeState({bool loading}) = _$HomeStateImpl;
 
   @override
   bool get loading;
   set loading(bool value);
-  @override
-  List<HomeNewsModel> get news;
-  set news(List<HomeNewsModel> value);
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>

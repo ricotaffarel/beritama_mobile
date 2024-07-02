@@ -1,5 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
+import 'package:beritama/module/menu/community/community/models/community_model.dart';
+import 'package:beritama/shared/utils/state_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -103,10 +105,16 @@ class CommunityCardNews1 extends StatelessWidget {
 }
 
 class CommunityCardNews2 extends StatelessWidget {
-  const CommunityCardNews2({Key? key}) : super(key: key);
+  final CommunityModel community;
+  const CommunityCardNews2({Key? key, required this.community})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var image = community.fileName != null
+        ? "${url}/uploads/community/${community.fileName}"
+        : "https://images.unsplash.com/photo-1533050487297-09b450131914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+
     return Container(
       height: 120,
       margin: const EdgeInsets.only(
@@ -127,77 +135,56 @@ class CommunityCardNews2 extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(children: [
-        SizedBox(
-          width: 110,
-          height: 120,
-          child: Wrap(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(2.0),
-                child: CircleAvatar(
-                  radius: 23,
-                  backgroundImage: NetworkImage(
-                    "https://i.ibb.co/PGv8ZzG/me.jpg",
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 160.0,
+              width: 170,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(image),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    8.0,
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(2.0),
-                child: CircleAvatar(
-                  radius: 23,
-                  backgroundImage: NetworkImage(
-                    "https://i.ibb.co/PGv8ZzG/me.jpg",
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    community.name ?? "-",
+                    style: GoogleFonts.poppins(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(2.0),
-                child: CircleAvatar(
-                  radius: 23,
-                  backgroundImage: NetworkImage(
-                    "https://i.ibb.co/PGv8ZzG/me.jpg",
+                  const SizedBox(
+                    height: 5.0,
                   ),
-                ),
+                  Text(
+                    community.description ?? "-",
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.poppins(
+                      fontSize: 12.0,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.all(2.0),
-                child: CircleAvatar(
-                  radius: 23,
-                  child: Text("10+"),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Komunitas Aduh",
-                style: GoogleFonts.poppins(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(
-                height: 5.0,
-              ),
-              Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.poppins(
-                  fontSize: 12.0,
-                  color: Colors.grey[600],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ]),
+            ),
+          ]),
     );
   }
 }

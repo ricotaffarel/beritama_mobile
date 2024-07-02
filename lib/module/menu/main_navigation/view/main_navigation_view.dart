@@ -2,8 +2,6 @@ import 'package:beritama/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import '../controller/main_navigation_controller.dart';
-import '../state/main_navigation_state.dart';
 import 'package:get_it/get_it.dart';
 
 class MainNavigationView extends StatefulWidget {
@@ -84,9 +82,13 @@ class _MainNavigationViewState extends State<MainNavigationView> {
               ),
               label: "Event",
             ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(MdiIcons.chat),
+            //   label: "Chatbot",
+            // ),
             BottomNavigationBarItem(
-              icon: Icon(MdiIcons.accountGroup),
-              label: "Community",
+              icon: Icon(MdiIcons.newspaper),
+              label: "My News",
             ),
             BottomNavigationBarItem(
               icon: Icon(

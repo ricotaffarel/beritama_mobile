@@ -9,6 +9,7 @@
         "menu/home/home_news_with_category",
         "menu/home/home_news_search",
         "menu/home/home_news_detail",
+        "menu/home/home_news_detail2",
         "menu/event/event",
         "menu/event/event_registration",
         "menu/community/community",

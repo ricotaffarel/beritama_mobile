@@ -1,10 +1,9 @@
 import 'package:beritama/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../controller/login_controller.dart';
-import '../state/login_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -40,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
     return BlocProvider(
       create: (BuildContext context) => controller,
       child: BlocListener<LoginController, LoginState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.loading) {
             CustomShowDialog.showLoadingDialog(context, "Loading");
           }
@@ -49,8 +48,28 @@ class _LoginViewState extends State<LoginView> {
             CustomShowDialog.hideDialog(
               context,
             );
-            if (state.isLogin) {
+            if (state.isLogin == true) {
               Get.offAll(MainNavigationView());
+            } else {
+              CustomShowDialog.showDialogWidget(
+                  context,
+                  Column(
+                    children: [
+                      Icon(
+                        MdiIcons.closeCircle,
+                        size: 45.0,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(
+                        height: 15.0,
+                      ),
+                      Text("Login Failed",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16.0, fontWeight: FontWeight.w600))
+                    ],
+                  ));
+              await Future.delayed(Duration(seconds: 2));
+              CustomShowDialog.hideDialog(context);
             }
           }
         },
@@ -138,6 +157,7 @@ class _LoginViewState extends State<LoginView> {
                     if (controller.formKey.currentState!.validate() == true) {
                       controller.loginController();
                     }
+                    // Get.offAll(MainNavigationView());
                   },
                 ),
                 const SizedBox(

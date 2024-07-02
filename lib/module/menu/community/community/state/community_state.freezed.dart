@@ -18,6 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CommunityState {
   int get counter => throw _privateConstructorUsedError;
   set counter(int value) => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
+  set loading(bool value) => throw _privateConstructorUsedError;
+  List<CommunityModel> get communityList => throw _privateConstructorUsedError;
+  set communityList(List<CommunityModel> value) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CommunityStateCopyWith<CommunityState> get copyWith =>
@@ -30,7 +35,7 @@ abstract class $CommunityStateCopyWith<$Res> {
           CommunityState value, $Res Function(CommunityState) then) =
       _$CommunityStateCopyWithImpl<$Res, CommunityState>;
   @useResult
-  $Res call({int counter});
+  $Res call({int counter, bool loading, List<CommunityModel> communityList});
 }
 
 /// @nodoc
@@ -47,12 +52,22 @@ class _$CommunityStateCopyWithImpl<$Res, $Val extends CommunityState>
   @override
   $Res call({
     Object? counter = null,
+    Object? loading = null,
+    Object? communityList = null,
   }) {
     return _then(_value.copyWith(
       counter: null == counter
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
               as int,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      communityList: null == communityList
+          ? _value.communityList
+          : communityList // ignore: cast_nullable_to_non_nullable
+              as List<CommunityModel>,
     ) as $Val);
   }
 }
@@ -65,7 +80,7 @@ abstract class _$$CommunityStateImplCopyWith<$Res>
       __$$CommunityStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int counter});
+  $Res call({int counter, bool loading, List<CommunityModel> communityList});
 }
 
 /// @nodoc
@@ -80,12 +95,22 @@ class __$$CommunityStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? counter = null,
+    Object? loading = null,
+    Object? communityList = null,
   }) {
     return _then(_$CommunityStateImpl(
       counter: null == counter
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
               as int,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      communityList: null == communityList
+          ? _value.communityList
+          : communityList // ignore: cast_nullable_to_non_nullable
+              as List<CommunityModel>,
     ));
   }
 }
@@ -93,15 +118,22 @@ class __$$CommunityStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CommunityStateImpl implements _CommunityState {
-  _$CommunityStateImpl({this.counter = 0});
+  _$CommunityStateImpl(
+      {this.counter = 0, this.loading = false, this.communityList = const []});
 
   @override
   @JsonKey()
   int counter;
+  @override
+  @JsonKey()
+  bool loading;
+  @override
+  @JsonKey()
+  List<CommunityModel> communityList;
 
   @override
   String toString() {
-    return 'CommunityState(counter: $counter)';
+    return 'CommunityState(counter: $counter, loading: $loading, communityList: $communityList)';
   }
 
   @JsonKey(ignore: true)
@@ -113,11 +145,20 @@ class _$CommunityStateImpl implements _CommunityState {
 }
 
 abstract class _CommunityState implements CommunityState {
-  factory _CommunityState({int counter}) = _$CommunityStateImpl;
+  factory _CommunityState(
+      {int counter,
+      bool loading,
+      List<CommunityModel> communityList}) = _$CommunityStateImpl;
 
   @override
   int get counter;
   set counter(int value);
+  @override
+  bool get loading;
+  set loading(bool value);
+  @override
+  List<CommunityModel> get communityList;
+  set communityList(List<CommunityModel> value);
   @override
   @JsonKey(ignore: true)
   _$$CommunityStateImplCopyWith<_$CommunityStateImpl> get copyWith =>

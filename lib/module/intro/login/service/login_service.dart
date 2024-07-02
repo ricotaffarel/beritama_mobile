@@ -1,5 +1,4 @@
 import 'package:beritama/core.dart';
-import 'package:beritama/module/intro/login/model/login_model.dart';
 import 'package:dio/dio.dart';
 
 class LoginService {

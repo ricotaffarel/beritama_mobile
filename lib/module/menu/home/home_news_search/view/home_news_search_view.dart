@@ -1,11 +1,6 @@
 import 'package:beritama/core.dart';
-import 'package:beritama/module/menu/home/home_news_search/widget/home_news_search_card.dart';
-import 'package:beritama/shared/utils/state_util.dart';
-import 'package:beritama/shared/widgets/textfield/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../controller/home_news_search_controller.dart';
-import '../state/home_news_search_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 

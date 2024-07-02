@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../state/profile_change_password_state.dart';
 import 'package:beritama/bloc_util.dart';
@@ -22,6 +23,8 @@ class ProfileChangePasswordController extends Cubit<ProfileChangePasswordState>
   void ready() {
     //ready event
   }
+
+  final formKey = GlobalKey<FormState>();
 
   increment() {
     state.counter++;

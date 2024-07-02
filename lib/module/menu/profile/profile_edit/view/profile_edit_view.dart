@@ -1,8 +1,7 @@
+import 'package:beritama/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import '../controller/profile_edit_controller.dart';
-import '../state/profile_edit_state.dart';
 import 'package:get_it/get_it.dart';
 
 class ProfileEditView extends StatefulWidget {
@@ -57,7 +56,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
   ) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Event"),
+          title: Text("Edit Profile"),
         ),
         body: Padding(
           padding: EdgeInsets.only(bottom: 10, top: 40, left: 30, right: 30),
@@ -128,7 +127,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                 child: Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
-                    color: Colors.green,
+                    color: primaryColor,
                     clipBehavior: Clip.antiAlias,
                     child: InkWell(
                       onTap: () async {},

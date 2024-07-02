@@ -1,7 +1,5 @@
 import 'package:beritama/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../state/profile_state.dart';
-import 'package:beritama/bloc_util.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -25,7 +23,7 @@ class ProfileController extends Cubit<ProfileState> implements IBlocBase {
 
   List menuProfile = [
     {"menu": "Profile", "to": ProfileEditView()},
-    {"menu": "Change Password", "to": ProfileChangePasswordView()},
+    {"menu": "Ubah Password", "to": ProfileChangePasswordView()},
     {"menu": "My Event", "to": ProfileMyEventView()}
   ];
 

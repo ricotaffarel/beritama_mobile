@@ -1,11 +1,5 @@
-import 'dart:io';
-
 import 'package:beritama/core.dart';
-import 'package:beritama/shared/utils/image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../state/home_news_detail_state.dart';
-import 'package:beritama/bloc_util.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -34,12 +28,13 @@ class HomeNewsDetailController extends Cubit<HomeNewsDetailState>
     emit(state.copyWith());
   }
 
+  HomeNewsModel news = HomeNewsModel(message: "message", data: []);
   getNews() async {
     state.loading = true;
     emit(state.copyWith());
 
-    state.news = await HomeService().getNews();
-    print(state.news.length);
+    news = await HomeService().getNews();
+    // print(news.data.length);
 
     state.loading = false;
     emit(state.copyWith());

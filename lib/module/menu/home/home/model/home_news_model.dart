@@ -1,95 +1,180 @@
+// To parse this JSON data, do
+//
+//     final homeNewsModel = homeNewsModelFromJson(jsonString);
+
+import 'dart:convert';
+
+HomeNewsModel homeNewsModelFromJson(String str) =>
+    HomeNewsModel.fromJson(json.decode(str));
+
+String homeNewsModelToJson(HomeNewsModel data) => json.encode(data.toJson());
+
 class HomeNewsModel {
-  String? createdAt;
-  String? updatedAt;
-  String? id;
-  String? newsTitle;
-  String? newsDescription;
-  String? newsAuthor;
-  String? newsSource;
-  String? newsPublishDate;
-  String? label;
-  bool? isAmbiguous;
-  bool? isTraining;
-  String? trainingDate;
-  String? fileName;
-  String? filePath;
-  int? counterView;
-  String? newsEmotion;
-  String? newsCategoryId;
-  NewsCategory? newsCategory;
+  String message;
+  List<Datum> data;
 
   HomeNewsModel({
-    this.createdAt,
-    this.updatedAt,
-    this.id,
-    this.newsTitle,
-    this.newsDescription,
-    this.newsAuthor,
-    this.newsSource,
-    this.newsPublishDate,
-    this.label,
-    this.isAmbiguous,
-    this.isTraining,
-    this.trainingDate,
-    this.fileName,
-    this.filePath,
-    this.counterView,
-    this.newsEmotion,
-    this.newsCategoryId,
-    this.newsCategory,
+    required this.message,
+    required this.data,
   });
 
-  factory HomeNewsModel.fromJson(Map<String, dynamic> json) {
-    return HomeNewsModel(
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      id: json['id'],
-      newsTitle: json['news_title'],
-      newsDescription: json['news_description'],
-      newsAuthor: json['news_author'],
-      newsSource: json['news_source'],
-      newsPublishDate: json['news_publish_date'],
-      label: json['label'],
-      isAmbiguous: json['is_ambiguous'],
-      isTraining: json['is_training'],
-      trainingDate: json['training_date'],
-      fileName: json['file_name'],
-      filePath: json['file_path'],
-      counterView: json['counter_view'],
-      newsEmotion: json['news_emotion'],
-      newsCategoryId: json['newsCategoryId'],
-      newsCategory: json['newsCategory'] != null
-          ? NewsCategory.fromJson(json['newsCategory'])
-          : null,
-    );
-  }
+  factory HomeNewsModel.fromJson(Map<String, dynamic> json) => HomeNewsModel(
+        message: json["message"],
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
+}
+
+class Datum {
+  DateTime createdAt;
+  DateTime updatedAt;
+  String id;
+  String? title;
+  String? description;
+  String? author;
+  String? source;
+  DateTime? publishDate;
+  String? newsKeywords;
+  String? ambigousKeywords;
+  bool isTraining;
+  DateTime? trainingDate;
+  String label;
+  String? location;
+  dynamic validatedDate;
+  String? url;
+  String? urlRequestId;
+  dynamic isDebunking;
+  int viewsTotal;
+  dynamic fileName;
+  dynamic filePath;
+  String? newsCategoryId;
+  String? response;
+  NewsCategory? newsCategory;
+
+  Datum({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.author,
+    required this.source,
+    required this.publishDate,
+    required this.newsKeywords,
+    required this.ambigousKeywords,
+    required this.isTraining,
+    required this.trainingDate,
+    required this.label,
+    required this.location,
+    required this.validatedDate,
+    required this.url,
+    required this.urlRequestId,
+    required this.isDebunking,
+    required this.viewsTotal,
+    required this.fileName,
+    required this.filePath,
+    required this.newsCategoryId,
+    required this.response,
+    required this.newsCategory,
+  });
+
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        id: json["id"],
+        title: json["title"],
+        description: json["description"],
+        author: json["author"],
+        source: json["source"],
+        publishDate: json["publish_date"] == null
+            ? null
+            : DateTime.parse(json["publish_date"]),
+        newsKeywords: json["news_keywords"],
+        ambigousKeywords: json["ambigous_keywords"],
+        isTraining: json["is_training"],
+        trainingDate: json["training_date"] == null
+            ? null
+            : DateTime.parse(json["training_date"]),
+        label: json["label"],
+        location: json["location"],
+        validatedDate: json["validated_date"],
+        url: json["url"],
+        urlRequestId: json["url_request_id"],
+        isDebunking: json["is_debunking"],
+        viewsTotal: json["views_total"],
+        fileName: json["file_name"],
+        filePath: json["file_path"],
+        newsCategoryId: json["news_category_id"],
+        response: json["response"],
+        newsCategory: json["newsCategory"] == null
+            ? null
+            : NewsCategory.fromJson(json["newsCategory"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "id": id,
+        "title": title,
+        "description": description,
+        "author": author,
+        "source": source,
+        "publish_date": publishDate?.toIso8601String(),
+        "news_keywords": newsKeywords,
+        "ambigous_keywords": ambigousKeywords,
+        "is_training": isTraining,
+        "training_date": trainingDate?.toIso8601String(),
+        "label": label,
+        "location": location,
+        "validated_date": validatedDate,
+        "url": url,
+        "url_request_id": urlRequestId,
+        "is_debunking": isDebunking,
+        "views_total": viewsTotal,
+        "file_name": fileName,
+        "file_path": filePath,
+        "news_category_id": newsCategoryId,
+        "response": response,
+        "newsCategory": newsCategory?.toJson(),
+      };
 }
 
 class NewsCategory {
-  String? createdAt;
-  String? updatedAt;
-  String? id;
-  String? newsCategoryName;
-  String? newsCategoryDescription;
-  int? aliasCode;
+  DateTime createdAt;
+  DateTime updatedAt;
+  String id;
+  String name;
+  String description;
+  dynamic aliasCode;
 
   NewsCategory({
-    this.createdAt,
-    this.updatedAt,
-    this.id,
-    this.newsCategoryName,
-    this.newsCategoryDescription,
-    this.aliasCode,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.aliasCode,
   });
 
-  factory NewsCategory.fromJson(Map<String, dynamic> json) {
-    return NewsCategory(
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      id: json['id'],
-      newsCategoryName: json['newsCategoryName'],
-      newsCategoryDescription: json['newsCategoryDescription'],
-      aliasCode: json['aliasCode'],
-    );
-  }
+  factory NewsCategory.fromJson(Map<String, dynamic> json) => NewsCategory(
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        aliasCode: json["alias_code"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "id": id,
+        "name": name,
+        "description": description,
+        "alias_code": aliasCode,
+      };
 }

@@ -1,8 +1,6 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:beritama/core.dart';
-import 'package:beritama/module/menu/home/home/widget/home_search_link.dart';
-import 'package:beritama/module/menu/home/home/widget/home_search_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,7 +29,7 @@ class _HomeFilterDialogState extends State<HomeFilterDialog> {
     "Minggu Ini",
     "Bulan Ini",
   ];
-  List checkedNews = ["Link Berita", "Judul & Isi Berita"];
+  List checkedNews = ["Link Berita", "Link Vidio Berita"];
 
   updateIndexCategory(int i) {
     indexCategory = i;
@@ -138,6 +136,9 @@ class _HomeFilterDialogState extends State<HomeFilterDialog> {
               ),
           ],
         ),
+        const SizedBox(
+          height: 10.0,
+        ),
         Text(
           "Cari Kebenaran Berita",
           style: GoogleFonts.poppins(
@@ -160,7 +161,7 @@ class _HomeFilterDialogState extends State<HomeFilterDialog> {
                         context, HomeSearchLink());
                   } else {
                     CustomShowDialog.showDialogWidget(
-                        context, HomeSearchText());
+                        context, HomeSearchLinkVidio());
                   }
                 },
                 child: Container(

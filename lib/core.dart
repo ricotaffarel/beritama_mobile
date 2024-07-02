@@ -4,6 +4,7 @@ If there is a conflicting class name in this file,
 it means you have to rename it to something more unique.
 */
 export 'package:beritama/bloc_util.dart';
+export 'package:beritama/injection.config.dart';
 export 'package:beritama/injection.dart';
 export 'package:beritama/module/intro/login/controller/login_controller.dart';
 export 'package:beritama/module/intro/login/model/login_model.dart';
@@ -18,9 +19,12 @@ export 'package:beritama/module/intro/splash_screen/controller/splash_screen_con
 export 'package:beritama/module/intro/splash_screen/state/splash_screen_state.dart';
 export 'package:beritama/module/intro/splash_screen/view/splash_screen_view.dart';
 export 'package:beritama/module/menu/chat/controller/chat_controller.dart';
+export 'package:beritama/module/menu/chat/models/chat_bot_model.dart';
 export 'package:beritama/module/menu/chat/state/chat_state.dart';
 export 'package:beritama/module/menu/chat/view/chat_view.dart';
 export 'package:beritama/module/menu/community/community/controller/community_controller.dart';
+export 'package:beritama/module/menu/community/community/models/community_model.dart';
+export 'package:beritama/module/menu/community/community/service/community_service.dart';
 export 'package:beritama/module/menu/community/community/state/community_state.dart';
 export 'package:beritama/module/menu/community/community/view/community_view.dart';
 export 'package:beritama/module/menu/community/community/widget/community_card_news.dart';
@@ -45,9 +49,13 @@ export 'package:beritama/module/menu/home/home/widget/home_search_link.dart';
 export 'package:beritama/module/menu/home/home/widget/home_search_result.dart';
 export 'package:beritama/module/menu/home/home/widget/home_search_text.dart';
 export 'package:beritama/module/menu/home/home_news_detail/controller/home_news_detail_controller.dart';
+export 'package:beritama/module/menu/home/home_news_detail/service/home_news_detail_service.dart';
 export 'package:beritama/module/menu/home/home_news_detail/state/home_news_detail_state.dart';
 export 'package:beritama/module/menu/home/home_news_detail/view/home_news_detail_view.dart';
 export 'package:beritama/module/menu/home/home_news_detail/widget/show_dialog_disclaimer.dart';
+export 'package:beritama/module/menu/home/home_news_detail2/controller/home_news_detail2_controller.dart';
+export 'package:beritama/module/menu/home/home_news_detail2/state/home_news_detail2_state.dart';
+export 'package:beritama/module/menu/home/home_news_detail2/view/home_news_detail2_view.dart';
 export 'package:beritama/module/menu/home/home_news_search/controller/home_news_search_controller.dart';
 export 'package:beritama/module/menu/home/home_news_search/service/home_news_search_service.dart';
 export 'package:beritama/module/menu/home/home_news_search/state/home_news_search_state.dart';
